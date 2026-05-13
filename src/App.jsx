@@ -130,7 +130,7 @@ function App() {
       {activePage === 'login' ? (
         <section className="login-page">
           <div className="login-left">
-            <img className="brand-mark" src="/assets/logo al azhar.webp" alt="Logo Alazka" />
+            <img className="brand-mark" src="/assets/logo-alazhar.webp" alt="Logo Alazka" />
             <h1>Teacher Application Form</h1>
             <p className="subtitle">
               Complete your information to apply as teacher in our system.
