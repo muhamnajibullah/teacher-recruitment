@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import './App.css'
+import logo from "./assets/logo-alazhar.webp"
+import logovertikal from "./assets/logo-vertikal.png"
 
 const educationOptions = ['SD', 'SMP', 'SMA/SMK', 'D1', 'D2', 'D3', 'D4', 'S1', 'S2', 'S3']
 const courseOptions = ['Matematika', 'Bahasa Inggris', 'Fisika', 'Kimia', 'Biologi']
