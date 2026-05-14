@@ -2,6 +2,8 @@
   min-height: 100vh;
   background: #f3f5f8;
   color: #1f2937;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .login-page {
@@ -17,10 +19,18 @@
   flex-direction: column;
 }
 
+.img-start {
+  justify-items: flex-start;
+  margin-left: 151px;
+
+}
+
 .brand-mark {
+  display: flex;
   width: 64px;
   height: 64px;
   margin-bottom: 18px;
+  justify-content: center;
 }
 
 .login-left h1 {
@@ -40,13 +50,17 @@
 .separator {
   margin: 20px 0 18px;
   height: 1px;
-  background: #dbe3ea;
+  width: 100%;
+  max-width: 467px;
+  display: block;
+  background: #C4CBDF;
 }
 
 .form-area {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: clamp(200px, 50vw, 467px);
 }
 
 .form-area label {
@@ -98,16 +112,15 @@
 
 .right-hero-logo {
   position: relative;
-  margin-top: 0;
-  right: 10px;
-  bottom: auto;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  margin: 20px;
+  max-width: fit-content;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-radius: 16px;
   object-position: center;
   opacity: 0.94;
   overflow: hidden;
-  border-radius: 50px;
 }
 
 .container-footer {
@@ -149,15 +162,24 @@
 }
 
 .top-label {
-  margin: 0;
+  display: flex;
+  gap: 10px;
   font-size: 12px;
   color: #64748b;
 }
 
-.test-navbar h2 {
+
+.top-label h2 {
   margin: 2px 0 0;
-  font-size: 21px;
+  font-size: 16px;
   color: #0f172a;
+}
+
+.top-label p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #787F8B;
+  transform: translateY(2px);
 }
 
 .profile-box {
@@ -168,19 +190,34 @@
 
 .profile-text {
   display: flex;
-  flex-direction: column;
+  position: relative;
   align-items: flex-end;
-  line-height: 1.2;
+  line-height: normal;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.profile-role {
+  font-size: 12px;
+  background: #E1FBE4;
+  color: #2B8626 !important;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-weight: 600;
 }
 
 .profile-text strong {
   font-size: 14px;
+  display: flex;
+  flex-direction: column;
   color: #0f172a;
+  padding: 1px 10px;
 }
 
 .profile-text span {
   font-size: 12px;
   color: #64748b;
+  padding: 1px 10px;
 }
 
 .profile-avatar {
@@ -244,10 +281,26 @@
   padding: 20px;
 }
 
+.all-questions-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.question-block {
+  padding: 18px 20px;
+  border-bottom: 1px solid #e6edf5;
+}
+
+.question-block:last-child {
+  border-bottom: none;
+}
+
 .question-number {
-  margin: 0 0 6px;
-  font-size: 12px;
-  color: #64748b;
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
 }
 
 .question-card h3 {
@@ -260,22 +313,26 @@
 .answer-list {
   display: grid;
   gap: 10px;
+  max-width: 360px;
 }
 
 .answer-item {
-  border: 1px solid #d8e0e8;
-  border-radius: 10px;
-  padding: 11px 12px;
-  background: #fbfdff;
+  border: none;
+  border-radius: 0;
+  padding: 2px 0;
+  background: transparent;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #334155;
+  color: #0f172a;
   font-size: 14px;
+  font-weight: 400;
 }
 
 .answer-item input {
   margin: 0;
+  width: 18px;
+  height: 18px;
 }
 
 .navigation-buttons {
@@ -283,6 +340,17 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+}
+
+.sticky-navigation {
+  position: sticky;
+  bottom: 0;
+  background: #ffffff;
+  border: 1px solid #dbe3ea;
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+  padding: 12px 16px;
+  margin-top: 0;
 }
 
 .nav-button {
@@ -309,10 +377,22 @@
   cursor: not-allowed;
 }
 
-/* @media (max-width: 980px) {
-  .login-page {
+@media (max-width: 1093px) {
+
+  /* .login-page {
     grid-template-columns: 1fr;
+  } */
+  .start-button {
+    width: clamp(200px, 50vw, 467px);
   }
+
+  /* .right-hero-logo {
+    width: auto;
+    max-width: 200px;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+  } */
 
   .login-right {
     min-height: 280px;
@@ -333,4 +413,9 @@
   .question-card h3 {
     font-size: 17px;
   }
-} */
+
+  .img-start {
+    width: calc(100vh - 80px);
+    ;
+  }
+}

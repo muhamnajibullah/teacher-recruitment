@@ -28,6 +28,48 @@ const questionBank = [
     question: 'Proses perubahan zat cair menjadi gas disebut...',
     options: ['Membeku', 'Menguap', 'Mencair', 'Menyublim'],
   },
+  {
+    id: 4,
+    question:
+      'Jika 3x + 5 = 20, maka nilai x adalah...',
+    options: ['3', '4', '5', '6'],
+  },
+  {
+    id: 5,
+    question:
+      'Sinonim kata "Cermat" yang paling tepat adalah...',
+    options: ['Lalai', 'Teliti', 'Cepat', 'Keras'],
+  },
+  {
+    id: 6,
+    question:
+      'Hasil dari 12 × 8 adalah...',
+    options: ['86', '92', '96', '108'],
+  },
+  {
+    id: 7,
+    question:
+      'Planet yang dikenal sebagai planet merah adalah...',
+    options: ['Venus', 'Mars', 'Jupiter', 'Saturnus'],
+  },
+  {
+    id: 8,
+    question:
+      'Dalam Bahasa Inggris, bentuk lampau (past tense) dari kata "go" adalah...',
+    options: ['goed', 'gone', 'went', 'going'],
+  },
+  {
+    id: 9,
+    question:
+      'Peristiwa perubahan uap air menjadi titik-titik air disebut...',
+    options: ['Evaporasi', 'Kondensasi', 'Sublimasi', 'Presipitasi'],
+  },
+  {
+    id: 10,
+    question:
+      'Nilai rata-rata dari 6, 8, 10, dan 12 adalah...',
+    options: ['8', '9', '10', '11'],
+  },
 ]
 
 /**
@@ -46,9 +88,6 @@ function App() {
     education: '',
     course: '',
   })
-
-  // State untuk menandai index soal yang sedang ditampilkan.
-  const [questionIndex, setQuestionIndex] = useState(0)
 
   // State untuk menampung jawaban user per id soal.
   const [answers, setAnswers] = useState({})
@@ -98,23 +137,22 @@ function App() {
   /**
    * Menyimpan jawaban berdasarkan soal aktif.
    */
-  const handleSelectAnswer = (option) => {
-    const activeQuestion = questionBank[questionIndex]
-    setAnswers((prev) => ({ ...prev, [activeQuestion.id]: option }))
+  const handleSelectAnswer = (questionId, option) => {
+    setAnswers((prev) => ({ ...prev, [questionId]: option }))
   }
 
   /**
-   * Navigasi ke soal berikutnya saat tombol Next diklik.
+   * Placeholder aksi ketika tombol Next diklik pada halaman semua soal.
    */
   const handleNextQuestion = () => {
-    setQuestionIndex((prev) => (prev < questionBank.length - 1 ? prev + 1 : prev))
+    alert('Jawaban tersimpan. Lanjut ke tahap berikutnya.')
   }
 
   /**
-   * Navigasi ke soal sebelumnya saat tombol Back diklik.
+   * Kembali ke halaman login saat tombol Back diklik.
    */
   const handlePrevQuestion = () => {
-    setQuestionIndex((prev) => (prev > 0 ? prev - 1 : prev))
+    handleBackToLogin()
   }
 
   /**
@@ -124,81 +162,80 @@ function App() {
     setActivePage('login')
   }
 
-  const activeQuestion = questionBank[questionIndex]
-  const selectedAnswer = answers[activeQuestion.id]
-
   return (
     <main className="app-shell">
       {activePage === 'login' ? (
         <section className="login-page">
           <div className="login-left">
-            <img className="brand-mark" src={logo} alt="Logo Alazka" />
-            <h1>Teacher Application Form</h1>
-            <p className="subtitle">
-              Complete your information to apply as teacher in our system.
-            </p>
-            <div className="separator" />
+            <div className="img-start">
+              <img className="brand-mark" src={logo} alt="Logo Alazka" />
+              <h1>Teacher Application Form</h1>
+              <p className="subtitle">
+                Complete your information to apply as teacher in our system
+              </p>
+              <div className="separator" />
 
-            <form className="form-area" onSubmit={handleStartTest}>
-              <label htmlFor="fullname">Full Name</label>
-              <input
-                id="fullname"
-                name="fullname"
-                type="text"
-                value={formData.fullname}
-                onChange={handleInputChange}
-                placeholder="Enter your fullname"
-              />
+              <form className="form-area" onSubmit={handleStartTest}>
+                <label htmlFor="fullname">Full Name</label>
+                <input
+                  id="fullname"
+                  name="fullname"
+                  type="text"
+                  value={formData.fullname}
+                  onChange={handleInputChange}
+                  placeholder="Enter your fullname"
+                />
 
-              <label htmlFor="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="Enter your email"
-              />
+                <label htmlFor="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Enter your email"
+                />
 
-              <label htmlFor="phone">Phone Number</label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="Enter your phone number"
-              />
+                <label htmlFor="phone">Phone Number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Enter your phone number"
+                />
 
-              <label htmlFor="education">Education Level</label>
-              <select
-                id="education"
-                name="education"
-                value={formData.education}
-                onChange={handleInputChange}
-              >
-                <option value="">Select education level</option>
-                {educationOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+                <label htmlFor="education">Education Level</label>
+                <select
+                  id="education"
+                  name="education"
+                  value={formData.education}
+                  onChange={handleInputChange}
+                >
+                  <option value="">Select education level</option>
+                  {educationOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
 
-              <label htmlFor="course">Course</label>
-              <select id="course" name="course" value={formData.course} onChange={handleInputChange}>
-                <option value="">Select Available Course</option>
-                {courseOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
-                  </option>
-                ))}
-              </select>
+                <label htmlFor="course">Course</label>
+                <select id="course" name="course" value={formData.course} onChange={handleInputChange}>
+                  <option value="">Select Available Course</option>
+                  {courseOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
 
-              <button type="submit" className="start-button">
-                Start Test
-              </button>
-            </form>
+                <button type="submit" className="start-button">
+                  Start Test
+                </button>
+              </form>
+            </div>
             <div className="container-footer">
               <span className="footer-left">© 2025 Divisi Pengembangan Alazka</span>
               <span className="footer-right">Contact Us</span>
@@ -216,16 +253,20 @@ function App() {
       ) : (
         <section className="test-page">
           <header className="test-navbar">
-            <div>
-              <p className="top-label">Selection Test</p>
-              <h2>Alazka Recruit</h2>
+            <div className="top-label">
+              <h2>Selection Test</h2>
+              <p>Alazka Recruit</p>
             </div>
 
             <div className="profile-box">
               <div className="profile-text">
                 <strong>{formData.fullname}</strong>
-                <span>Guest Teacher</span>
+                <div>
+                  <span className="profile-role">Guest</span>
+                  <span>Teacher</span>
+                </div>
               </div>
+
               <div className="profile-avatar">{profileAlias}</div>
             </div>
           </header>
@@ -236,7 +277,7 @@ function App() {
             </button>
 
             <p className="test-title">
-              Selection Test "{formData.education}" Teacher "{formData.course}" • Al-Azhar Kelapa Gading
+              Selection Test Teacher {formData.course} • Al-Azhar Kelapa Gading
             </p>
 
             <div className="candidate-info">
@@ -244,42 +285,40 @@ function App() {
               <span>{formData.email}</span>
             </div>
 
-            <article className="question-card">
-              <p className="question-number">
-                Question {questionIndex + 1} of {questionBank.length}
-              </p>
-              <h3>{activeQuestion.question}</h3>
+            <article className="question-card all-questions-card">
+              {questionBank.map((question, index) => {
+                const selectedAnswer = answers[question.id]
+                return (
+                  <section key={question.id} className="question-block">
+                    <p className="question-number">{index + 1}. {question.question}</p>
 
-              <div className="answer-list">
-                {activeQuestion.options.map((option) => (
-                  <label key={option} className="answer-item">
-                    <input
-                      type="radio"
-                      name={`question-${activeQuestion.id}`}
-                      checked={selectedAnswer === option}
-                      onChange={() => handleSelectAnswer(option)}
-                    />
-                    <span>{option}</span>
-                  </label>
-                ))}
-              </div>
+                    <div className="answer-list">
+                      {question.options.map((option, optionIndex) => (
+                        <label key={option} className="answer-item">
+                          <input
+                            type="radio"
+                            name={`question-${question.id}`}
+                            checked={selectedAnswer === option}
+                            onChange={() => handleSelectAnswer(question.id, option)}
+                          />
+                          <span>{String.fromCharCode(65 + optionIndex)}. {option}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </section>
+                )
+              })}
             </article>
 
-            <div className="navigation-buttons">
+            <div className="navigation-buttons sticky-navigation">
               <button
                 type="button"
                 className="nav-button secondary"
                 onClick={handlePrevQuestion}
-                disabled={questionIndex === 0}
               >
                 Back
               </button>
-              <button
-                type="button"
-                className="nav-button primary"
-                onClick={handleNextQuestion}
-                disabled={questionIndex === questionBank.length - 1}
-              >
+              <button type="button" className="nav-button primary" onClick={handleNextQuestion}>
                 Next
               </button>
             </div>
